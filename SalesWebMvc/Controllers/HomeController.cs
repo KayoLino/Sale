@@ -18,8 +18,22 @@ namespace SalesWebMvc.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            ViewData["message"] = "Este é um site para testar meus conhecimentos em C# com Razor.";
+
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
+            ViewData["message"] = "Está é minha página privacy";
+
             return View();
         }
 
