@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using SalesWebMvc.Models;
+using SalesWebMvc.Models.ViewModels;
 
 namespace SalesWebMvc.Controllers
 {
@@ -32,7 +32,7 @@ namespace SalesWebMvc.Controllers
 
         public IActionResult Privacy()
         {
-            ViewData["message"] = "Está é minha página privacy";
+            ViewData["message"] = "Está é minha página privada";
 
             return View();
         }
