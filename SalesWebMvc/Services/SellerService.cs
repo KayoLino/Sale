@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Data;
 using SalesWebMvc.Models;
@@ -34,9 +35,16 @@ namespace SalesWebMvc.Services
 
         public async Task RemoveAsync(int id)
         {
-            var obj = _context.Seller.Find(id)!;
-            _context.Remove(obj);
-           await _context.SaveChangesAsync();
+            try
+            {
+                var obj = _context.Seller.Find(id)!;
+                _context.Remove(obj);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbConcurrencyException e)
+            {
+                throw new IntegrityException(e.Message);
+            }
         }
 
         public async Task UpdateAsync(Seller obj)
